@@ -13,9 +13,9 @@ public class TemplateEngineTest {
     @Test
     public void shouldProcessTemplateWithoutException()
     {
-        final Context contex = new Context();
+        final Context context = new Context();
         final TemplateEngine templateEngine = TemplateEngineHelper.getEngine();
-        final String result = templateEngine.process("home.html", contex);
+        final String result = templateEngine.process("home.html", context);
         logger.info("result: " + result);
     }
 
