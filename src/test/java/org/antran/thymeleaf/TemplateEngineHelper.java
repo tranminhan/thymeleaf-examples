@@ -8,17 +8,18 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
  */
 public class TemplateEngineHelper
 {
-    private static final TemplateEngine templateEngine = new TemplateEngine();
-
-    {
-        final ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setTemplateMode("HTML5");
-        templateResolver.setCharacterEncoding("UTF-8");
-        templateEngine.setTemplateResolver(templateResolver);
-    }
+    static TemplateEngine templateEngine;
 
     public static TemplateEngine getEngine()
     {
+        if (templateEngine == null)
+        {
+            templateEngine = new TemplateEngine();
+            final ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+            templateResolver.setTemplateMode("HTML5");
+            templateResolver.setCharacterEncoding("UTF-8");
+            templateEngine.setTemplateResolver(templateResolver);
+        }
         return templateEngine;
     }
 }
