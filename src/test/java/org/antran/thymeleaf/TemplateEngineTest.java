@@ -24,8 +24,43 @@ public class TemplateEngineTest {
     {
         final Context context = new Context();
         context.setVariable("var_1", "a string from a variable");
+
         final TemplateEngine templateEngine = TemplateEngineHelper.getEngine();
         final String result = templateEngine.process("page_with_vars.html", context);
+        logger.info("result: " + result);
+    }
+
+    @Test
+    public void shouldProcessTemplateWithLinkVars()
+    {
+        final Context context = new Context();
+        context.setVariable("HOST", "http://HOST.COM/");
+        context.setVariable("var_1", "a string from a variable");
+
+        final TemplateEngine templateEngine = TemplateEngineHelper.getEngine();
+        final String result = templateEngine.process("page_with_links.html", context);
+        logger.info("result: " + result);
+    }
+
+    @Test
+    public void shouldProcessTemplateWithStyle()
+    {
+        final Context context = new Context();
+        context.setVariable("appURL", "http://HOST.COM/");
+
+        final TemplateEngine templateEngine = TemplateEngineHelper.getEngine();
+        final String result = templateEngine.process("page_with_style_tags.html", context);
+        logger.info("result: " + result);
+    }
+
+    @Test
+    public void shouldProcessTemplateWithStyleHead()
+    {
+        final Context context = new Context();
+        context.setVariable("appURL", "http://HOST.COM/");
+
+        final TemplateEngine templateEngine = TemplateEngineHelper.getEngine();
+        final String result = templateEngine.process("page_with_style_head.html", context);
         logger.info("result: " + result);
     }
 }
